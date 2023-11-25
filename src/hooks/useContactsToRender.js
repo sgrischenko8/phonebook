@@ -1,4 +1,4 @@
-import { useSelector } from 'src/react-redux';
+import { useSelector } from 'react-redux';
 import { selectFilter } from 'src/redux/selectors';
 
 export const useContactsToRender = (contacts) => {

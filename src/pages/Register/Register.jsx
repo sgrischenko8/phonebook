@@ -10,6 +10,7 @@ import styles from './Register.module.css';
 const Register = () => {
   const dispatch = useDispatch();
   const [register, { isLoading, error, isSuccess }] = useRegisterMutation();
+  console.log(register, 'register');
 
   const showCongrats = () => {
     toast.success('You successfully registered');
