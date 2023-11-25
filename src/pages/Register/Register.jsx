@@ -19,6 +19,7 @@ const Register = () => {
   const registerHandler = async (values) => {
     try {
       await register(values).then((res) => {
+        console.log(res, 'promise register');
         dispatch(setToken(res.data.token));
       });
     } catch (e) {
