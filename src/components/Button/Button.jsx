@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 import {
   useGetContactsQuery,
   useAddContactMutation,
   useDeleteContactMutation,
   useEditContactMutation,
-} from 'redux/contacts/contactsSlice';
+} from 'src/redux/contacts/contactsSlice';
 
-import { selectToken } from 'redux/selectors';
+import { selectToken } from 'src/redux/selectors';
 import { useSelector } from 'react-redux';
 
 export const Button = ({ children, onClick }) => {
@@ -31,7 +30,11 @@ export const Button = ({ children, onClick }) => {
   return (
     <button
       className={styles.btn}
-      type={children === '✔' || 'Sign Up' || 'Log In' ? 'submit' : 'button'}
+      type={
+        children === '✔' || children === 'Sign Up' || children === 'Log In'
+          ? 'submit'
+          : 'button'
+      }
       onClick={() => onClick()}
       disabled={
         isLoading || addLoading || delLoading || editLoading ? true : false
@@ -41,9 +44,4 @@ export const Button = ({ children, onClick }) => {
       {children}
     </button>
   );
-};
-
-Button.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
 };

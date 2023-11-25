@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import { selectTheme } from 'redux/selectors';
+import { selectTheme } from 'src/redux/selectors';
 
 import { Formik, Form, Field } from 'formik';
-import { Button } from 'components/Button/Button';
-import Loader from 'components/Loader/Loader';
+import { Button } from 'src/components/Button/Button';
+import Loader from 'src/components/Loader/Loader';
 import toast from 'react-hot-toast';
 import styles from './ContactForm.module.css';
 
@@ -13,7 +13,6 @@ import {
   useEditContactMutation,
   useDeleteContactMutation,
 } from 'redux/contacts/contactsSlice';
-import PropTypes from 'prop-types';
 
 export const ContactForm = ({ onClose, contact }) => {
   const initialValues = { name: '', number: '' };
@@ -31,7 +30,7 @@ export const ContactForm = ({ onClose, contact }) => {
   const [editContact, { isLoading: editLoading }] = useEditContactMutation();
   const [deleteContact, { isLoading: delLoading }] = useDeleteContactMutation();
 
-  const checkForEmptiness = values => {
+  const checkForEmptiness = (values) => {
     if (values.name.trim() === '' || values.number.trim() === '') {
       return true;
     }
@@ -44,7 +43,7 @@ export const ContactForm = ({ onClose, contact }) => {
     }
     if (
       contacts.some(
-        item => item?.name.toLowerCase() === values.name.toLowerCase()
+        (item) => item?.name.toLowerCase() === values.name.toLowerCase(),
       )
     ) {
       toast.error(`${values.name} is already in contacts.`);
@@ -123,13 +122,4 @@ export const ContactForm = ({ onClose, contact }) => {
       </Form>
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onClose: PropTypes.func,
-  contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }),
 };

@@ -1,8 +1,7 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import styles from './Modal.module.css';
-import { ContactForm } from 'components/ContactForm/ContactForm';
-import PropTypes from 'prop-types';
+import { ContactForm } from 'src/components/ContactForm/ContactForm';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -20,7 +19,7 @@ export const Modal = ({ onClose, contact }) => {
     };
   }, [onClose]);
 
-  const handleBackdropClick = e => {
+  const handleBackdropClick = (e) => {
     if (e.target.nodeName === 'DIV') {
       onClose();
     }
@@ -32,15 +31,6 @@ export const Modal = ({ onClose, contact }) => {
         <ContactForm onClose={onClose} contact={contact} />
       </div>
     </div>,
-    modalRoot
+    modalRoot,
   );
-};
-
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  contact: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
-  }),
 };

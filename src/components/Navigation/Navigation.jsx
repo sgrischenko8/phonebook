@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.css';
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/selectors';
+import { selectToken } from 'src/redux/selectors';
 
 export const Navigation = () => {
   const token = useSelector(selectToken);

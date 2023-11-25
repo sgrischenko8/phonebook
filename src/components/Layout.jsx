@@ -4,12 +4,12 @@ import { ThemeSwitcher } from './ThemeSwitcher/ThemeSwitcher';
 import { UserMenu } from './UserMenu/UserMenu';
 import { Navigation } from './Navigation/Navigation';
 import { Toaster } from 'react-hot-toast';
-import Loader from 'components/Loader/Loader';
+import Loader from 'src/components/Loader/Loader';
 import styles from './Layout.module.css';
 
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/selectors';
-import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
+import { selectToken } from 'src/redux/selectors';
+import { useGetContactsQuery } from 'src/redux/contacts/contactsSlice';
 
 const Layout = () => {
   const token = useSelector(selectToken);

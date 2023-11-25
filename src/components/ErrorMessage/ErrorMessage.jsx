@@ -1,5 +1,4 @@
 import toast from 'react-hot-toast';
-import PropTypes from 'prop-types';
 
 const ErrorMessage = ({ error, path }) => {
   if (error.status === 400 && !error.data.message && path === '/login') {
@@ -18,14 +17,6 @@ const ErrorMessage = ({ error, path }) => {
     toast.error('Fill all fields');
     return;
   }
-};
-
-ErrorMessage.propTypes = {
-  path: PropTypes.string,
-  error: PropTypes.shape({
-    status: PropTypes.number,
-    data: PropTypes.object,
-  }),
 };
 
 export default ErrorMessage;

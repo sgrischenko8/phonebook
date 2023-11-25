@@ -1,9 +1,9 @@
-import { Button } from 'components/Button/Button';
-import Loader from 'components/Loader/Loader';
-import { ReactComponent as Out } from 'icons/Out.svg';
+import { Button } from 'src/components/Button/Button';
+import Loader from 'src/components/Loader/Loader';
+import { OutIcon } from '../OutIcon/OutIcon';
 import { useDispatch } from 'react-redux';
-import { useCheckUserQuery, useLogoutMutation } from 'redux/auth/authSlice';
-import { setToken } from 'redux/auth/tokenSlice';
+import { useCheckUserQuery, useLogoutMutation } from 'src/redux/auth/authSlice';
+import { setToken } from 'src/redux/auth/tokenSlice';
 import styles from './UserMenu.module.css';
 
 export const UserMenu = () => {
@@ -35,7 +35,7 @@ export const UserMenu = () => {
             <Loader />
           ) : (
             <Button onClick={logoutHandler}>
-              <Out />
+              <OutIcon />
             </Button>
           )}
         </div>

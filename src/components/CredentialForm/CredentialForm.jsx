@@ -1,7 +1,6 @@
 import { Formik, Form, Field } from 'formik';
-import { Button } from 'components/Button/Button';
+import { Button } from 'src/components/Button/Button';
 import { useLocation } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import styles from './CredentialForm.module.css';
 
 const initialValues = { name: '', email: '', password: '' };
@@ -58,9 +57,4 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
       </Form>
     </Formik>
   );
-};
-
-CredentialForm.propTypes = {
-  loginHandler: PropTypes.func,
-  registerHandler: PropTypes.func,
 };

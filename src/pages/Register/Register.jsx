@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { setToken } from 'redux/auth/tokenSlice';
-import { useRegisterMutation } from 'redux/auth/authSlice';
-import { CredentialForm } from 'components/CredentialForm/CredentialForm';
-import Loader from 'components/Loader/Loader';
+import { setToken } from 'src/redux/auth/tokenSlice';
+import { useRegisterMutation } from 'src/redux/auth/authSlice';
+import { CredentialForm } from 'src/components/CredentialForm/CredentialForm';
+import Loader from 'src/components/Loader/Loader';
 import toast from 'react-hot-toast';
-import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+import ErrorMessage from 'src/components/ErrorMessage/ErrorMessage';
 import styles from './Register.module.css';
 
 const Register = () => {
@@ -15,9 +15,9 @@ const Register = () => {
     toast.success('You successfully registered');
   };
 
-  const registerHandler = async values => {
+  const registerHandler = async (values) => {
     try {
-      await register(values).then(res => {
+      await register(values).then((res) => {
         dispatch(setToken(res.data.token));
       });
     } catch (e) {

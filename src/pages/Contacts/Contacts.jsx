@@ -1,8 +1,8 @@
-import { Filter } from 'components/Filter/Filter';
-import { Button } from 'components/Button/Button';
-import { Modal } from 'components/Modal/Modal';
-import { ContactList } from 'components/ContactList/ContactList';
-import { useGetContactsQuery } from 'redux/contacts/contactsSlice';
+import { Filter } from 'src/components/Filter/Filter';
+import { Button } from 'src/components/Button/Button';
+import { Modal } from 'src/components/Modal/Modal';
+import { ContactList } from 'src/components/ContactList/ContactList';
+import { useGetContactsQuery } from 'src/redux/contacts/contactsSlice';
 import { useState } from 'react';
 import styles from './Contacts.module.css';
 
@@ -10,7 +10,7 @@ const Contacts = () => {
   const { data: contacts } = useGetContactsQuery();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
-    setIsModalOpen(prev => !prev);
+    setIsModalOpen((prev) => !prev);
   };
 
   return (

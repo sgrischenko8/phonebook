@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectToken } from 'redux/selectors';
+import { selectToken } from 'src/redux/selectors';
 
 export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   const token = useSelector(selectToken);
