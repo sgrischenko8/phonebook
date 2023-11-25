@@ -1,17 +1,17 @@
-import { useSelector } from 'react-redux';
-import { selectFilter } from 'redux/selectors';
+import { useSelector } from 'src/react-redux';
+import { selectFilter } from 'src/redux/selectors';
 
-export const useContactsToRender = contacts => {
+export const useContactsToRender = (contacts) => {
   const filter = useSelector(selectFilter);
 
   const sortedContacts = [...contacts].sort((a, b) =>
-    a.name.localeCompare(b.name)
+    a.name.localeCompare(b.name),
   );
   if (!filter) {
     return sortedContacts;
   }
   const normalizedFilter = filter.toLowerCase();
-  return sortedContacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalizedFilter)
+  return sortedContacts.filter((contact) =>
+    contact.name.toLowerCase().includes(normalizedFilter),
   );
 };
