@@ -1,0 +1,29 @@
+.header {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+.header_container {
+  margin: 0 auto;
+  position: relative;
+  max-width: 800px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+@media screen and (max-width: 520px) {
+  .header_container {
+    padding-top: 12px;
+    flex-wrap: nowrap;
+    align-items: baseline;
+  }
+}
+
+.main {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 100vh;
+  text-align: center;
+}

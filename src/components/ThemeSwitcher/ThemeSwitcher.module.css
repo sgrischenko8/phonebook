@@ -1,0 +1,67 @@
+.theme_switcher {
+  margin-left: auto;
+  padding: 0 2px;
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  top: 10px;
+  right: 20%;
+  font-size: 14px;
+}
+
+.theme_switcher > input {
+  position: relative;
+  width: 30px;
+  height: 16px;
+  border: 1px solid rgb(130, 173, 209);
+  border-radius: 20px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: linear-gradient(180deg, rgb(239, 240, 228) 0%, #dcdcdc 100%);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+.theme_switcher > input::after {
+  content: '';
+  background: #fffffb;
+  position: absolute;
+  left: 0px;
+  top: -1px;
+
+  width: 16px;
+  height: 16px;
+
+  border-radius: 50%;
+  background-color: rgba(32, 32, 37, 0.8);
+  transform: translateX(0);
+}
+.theme_switcher > input:checked::after {
+  transform: translateX(calc(12px));
+  background-color: #fffffb;
+}
+.theme_switcher > input:checked {
+  background: linear-gradient(180deg, rgb(32, 32, 37) 0%, #686868 100%);
+}
+
+.theme_switcher > span {
+  padding: 0 6px;
+  font-weight: 700;
+  border-radius: 16px;
+  border: 1px solid rgb(130, 173, 209);
+}
+@media screen and (max-width: 768px) {
+  .theme_switcher > span {
+    display: none;
+  }
+}
+
+.dark {
+  background-color: rgb(32, 32, 37);
+  color: rgb(239, 240, 228);
+}
+
+.light {
+  background-color: rgb(239, 240, 228);
+  color: rgb(32, 32, 37);
+}

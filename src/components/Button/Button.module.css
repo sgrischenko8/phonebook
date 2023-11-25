@@ -1,0 +1,22 @@
+/* ------------Btn from ContactListItem Component------ */
+li .btn {
+  /* box-shadow: 1px 1px 4px 0px rgba(130, 173, 209, 0.9); */
+}
+
+li .btn:hover svg {
+  fill: #aa2424;
+}
+
+li .btn:active svg {
+  scale: 0.45;
+}
+
+/* ------------Btn from ContactForm Component------ */
+form .btn {
+  font-weight: 400;
+  font-size: 24px;
+}
+form .btn:hover {
+  color: green;
+  font-weight: 700;
+}

@@ -1,0 +1,149 @@
+@import-normalize; /* bring in normalize.css styles */
+
+@font-face {
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Mono'),
+    url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
+      url(./fonts/IBMPlexMono-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('IBM Plex Mono'),
+    url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
+      url(./fonts/IBMPlexMono-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('IBM Plex Mono'),
+    url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
+      url(./fonts/IBMPlexMono-Italic.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: local('IBM Plex Mono'),
+    url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
+      url(./fonts/IBMPlexMono-BoldItalic.ttf) format('truetype');
+}
+
+body {
+  margin: 0;
+  font-family: 'IBM Plex Mono', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+  font-style: italic;
+  background-color: rgb(32, 32, 37);
+  color: rgb(239, 240, 228);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+p {
+  margin: 0;
+}
+
+nav a.active {
+  color: rgba(130, 173, 209, 1);
+  cursor: default;
+}
+nav a.active:hover {
+  color: rgba(130, 173, 209, 1);
+  cursor: default;
+  text-decoration: none;
+  opacity: 1;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 10px 0;
+}
+
+ul {
+  margin: 0.6em 0;
+  padding: 0;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 1;
+  max-width: 400px;
+  border: 1px solid rgb(130, 173, 209);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+label {
+  background-color: inherit;
+}
+
+form input {
+  margin-bottom: 16px;
+  margin-left: auto;
+  min-width: 100px;
+  font-size: 22px;
+  color: inherit;
+  background-color: rgba(130, 173, 209, 0.2);
+
+  border-radius: 4px;
+  border: inherit;
+}
+textarea:focus,
+input:focus {
+  box-shadow: 1px 1px 4px 0px rgba(130, 173, 209, 0.9);
+  outline: none;
+}
+
+button {
+  border: 1px solid;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  border-color: rgb(130, 173, 209);
+  box-shadow: 1px 1px 4px 0px rgba(130, 173, 209, 0.9);
+}
+
+button:hover {
+  opacity: 0.8;
+  box-shadow: 1px 1px 8px 2px rgba(130, 173, 209, 1);
+}
+button:active {
+  scale: 0.95;
+}
+
+svg {
+  fill: rgba(130, 173, 209, 0.9);
+  stroke: inherit;
+}
+body main ul li svg {
+  scale: 0.5;
+}

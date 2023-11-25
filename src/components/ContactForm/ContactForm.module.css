@@ -1,0 +1,21 @@
+.form_phonebook {
+  gap: 10px;
+  align-items: flex-end;
+  background-color: rgba(130, 173, 209, 0.1);
+}
+.form_phonebook_light {
+  gap: 10px;
+  align-items: flex-end;
+  background-color: #fffffb;
+}
+
+.form_add_container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form_phonebook input {
+  width: 100%;
+  color: rgb(130, 173, 209);
+}

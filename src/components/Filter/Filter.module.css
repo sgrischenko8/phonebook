@@ -1,0 +1,13 @@
+.filter_label {
+  display: flex;
+  max-width: 274px;
+  border-radius: 4px;
+}
+.filter_input {
+  display: flex;
+  font-size: 22px;
+  color: inherit;
+  background-color: inherit;
+  border: 1px solid rgb(130, 173, 209);
+  border-radius: 4px;
+}
