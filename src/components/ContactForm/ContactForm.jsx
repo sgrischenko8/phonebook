@@ -12,7 +12,7 @@ import {
   useAddContactMutation,
   useEditContactMutation,
   useDeleteContactMutation,
-} from 'redux/contacts/contactsSlice';
+} from 'src/redux/contacts/contactsSlice';
 
 export const ContactForm = ({ onClose, contact }) => {
   const initialValues = { name: '', number: '' };
