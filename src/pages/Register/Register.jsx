@@ -23,7 +23,7 @@ const Register = () => {
       await verify(verificationToken).then((res) => {
         console.log(res, 'promise verify');
         if (res.status === 200) {
-          navigate('/login', { state: { email: res.data.email } });
+          navigate('/login', { state: { email: res?.data?.email } });
         }
       });
     } catch (e) {

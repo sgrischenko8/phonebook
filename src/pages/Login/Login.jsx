@@ -28,7 +28,7 @@ const Login = () => {
       <h1>Phonebook</h1>
       <CredentialForm
         loginHandler={loginHandler}
-        email={location.state.email}
+        email={location.state?.email}
       />
       {error && <ErrorMessage error={error} path={'/login'} />}
       {isLoading && <Loader />}
