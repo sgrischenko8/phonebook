@@ -32,6 +32,13 @@ export const authApi = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
+    verify: builder.mutation({
+      query: (verificationToken) => ({
+        url: `/users/register/${verificationToken}`,
+        method: 'PATCH',
+      }),
+      invalidatesTags: ['Auth'],
+    }),
     login: builder.mutation({
       query: (values) => ({
         url: '/users/login',
@@ -53,6 +60,7 @@ export const authApi = createApi({
 export const {
   useCheckUserQuery,
   useRegisterMutation,
+  useVerifyMutation,
   useLoginMutation,
   useLogoutMutation,
 } = authApi;

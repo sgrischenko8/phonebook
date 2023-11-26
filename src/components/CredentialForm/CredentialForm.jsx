@@ -1,12 +1,19 @@
 import { Formik, Form, Field } from 'formik';
 import { Button } from 'src/components/Button/Button';
 import { useLocation } from 'react-router-dom';
-import styles from './CredentialForm.module.css';
+import { useState } from 'react';
+import css from './CredentialForm.module.css';
 
-const initialValues = { name: '', email: '', password: '' };
+export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
+  const initialValues = { name: '', email: email ? email : '', password: '' };
 
-export const CredentialForm = ({ loginHandler, registerHandler }) => {
   const location = useLocation();
+
+  const [passwordVisibility, setPasswordvisibility] = useState(false);
+
+  function togglePasswordVisibility() {
+    setPasswordvisibility((prev) => !prev);
+  }
 
   function dummyClick() {
     return;
@@ -19,7 +26,7 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
         location.pathname === '/register' ? registerHandler : loginHandler
       }
     >
-      <Form className={styles.credential_form}>
+      <Form className={css.credential_form}>
         {location.pathname === '/register' && (
           <>
             <label htmlFor="name">Name:</label>
@@ -43,17 +50,24 @@ export const CredentialForm = ({ loginHandler, registerHandler }) => {
 
         <label htmlFor="password">Password:</label>
         <Field
-          type="password"
+          type={passwordVisibility ? 'text' : 'password'}
           name="password"
           pattern="['a-zA-Z\d\s\W+\.]+."
           minLength="6"
           title="Password number may contain letters, digits, spaces and symbols"
         />
-        <div className={styles.form_btn_container}>
+        <div className={css.form_btn_container}>
           <Button onClick={dummyClick}>
             {location.pathname === '/register' ? 'Sign Up' : 'Log In'}
           </Button>
         </div>
+        <button
+          className={css.visibility_btn}
+          type="button"
+          onClick={() => togglePasswordVisibility()}
+        >
+          show
+        </button>
       </Form>
     </Formik>
   );

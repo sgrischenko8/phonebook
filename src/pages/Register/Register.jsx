@@ -1,6 +1,10 @@
 import { useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import { setToken } from 'src/redux/auth/tokenSlice';
-import { useRegisterMutation } from 'src/redux/auth/authSlice';
+import {
+  useRegisterMutation,
+  useVerifyMutation,
+} from 'src/redux/auth/authSlice';
 import { CredentialForm } from 'src/components/CredentialForm/CredentialForm';
 import Loader from 'src/components/Loader/Loader';
 import toast from 'react-hot-toast';
@@ -9,8 +13,28 @@ import styles from './Register.module.css';
 
 const Register = () => {
   const dispatch = useDispatch();
+  let navigate = useNavigate();
   const [register, { isLoading, error, isSuccess }] = useRegisterMutation();
-  console.log(register, 'register');
+  const [verify, { isLoading: verifyIsLoading, error: verifyError }] =
+    useVerifyMutation();
+
+  const verifyRegister = async () => {
+    try {
+      await verify(verificationToken).then((res) => {
+        console.log(res, 'promise verify');
+        if (res.status === 200) {
+          navigate('/login', { state: { email: res.data.email } });
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const { verificationToken } = useParams();
+  if (verificationToken) {
+    verifyRegister();
+  }
 
   const showCongrats = () => {
     toast.success('You successfully registered');
