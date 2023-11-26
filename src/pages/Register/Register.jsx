@@ -1,6 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import { setToken } from 'src/redux/auth/tokenSlice';
+// import { useDispatch } from 'react-redux';
+import { useEffect, useCallback } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import {
   useRegisterMutation,
   useVerifyMutation,
@@ -12,39 +12,54 @@ import ErrorMessage from 'src/components/ErrorMessage/ErrorMessage';
 import styles from './Register.module.css';
 
 const Register = () => {
-  const dispatch = useDispatch();
   let navigate = useNavigate();
-  const [register, { isLoading, error, isSuccess }] = useRegisterMutation();
-  const [verify, { isLoading: verifyIsLoading, error: verifyError }] =
-    useVerifyMutation();
+  const [searchParams] = useSearchParams();
+  const verificationToken = searchParams.get('verificationToken');
 
-  const verifyRegister = async () => {
+  const [register, { isLoading, error, isSuccess }] = useRegisterMutation();
+  const [
+    verify,
+    {
+      isLoading: verifyIsLoading,
+      error: verifyError,
+      isSuccess: verifySuccess,
+    },
+  ] = useVerifyMutation();
+
+  const verifyRegister = useCallback(async () => {
     try {
       await verify(verificationToken).then((res) => {
         console.log(res, 'promise verify');
-        if (res.status === 200) {
-          navigate('/login', { state: { email: res?.data?.email } });
+        if (!res.error) {
+          showCongrats();
+          const { email } = res.data;
+          navigate('/login', { state: { email } });
         }
       });
     } catch (e) {
       console.log(e);
     }
-  };
+  }, [verificationToken, verify]);
 
-  const { verificationToken } = useParams();
-  if (verificationToken) {
-    verifyRegister();
-  }
+  useEffect(() => {
+    if (verificationToken) {
+      verifyRegister();
+    }
+  }, [verifyRegister, verificationToken]);
 
   const showCongrats = () => {
-    toast.success('You successfully registered');
+    toast.success(
+      verifySuccess
+        ? 'You successfully register!'
+        : 'Check your email for verification link',
+    );
   };
 
   const registerHandler = async (values) => {
     try {
       await register(values).then((res) => {
         console.log(res, 'promise register');
-        dispatch(setToken(res.data.token));
+        isSuccess && showCongrats();
       });
     } catch (e) {
       console.log(e);
@@ -56,10 +71,14 @@ const Register = () => {
       <div className={styles.main_container}>
         <h1>Phonebook</h1>
         <CredentialForm registerHandler={registerHandler} />
+        <button type="button" onClick={() => verifyRegister()}>
+          send
+        </button>
       </div>
-      {error && <ErrorMessage error={error} />}
-      {isSuccess && showCongrats()}
-      {isLoading && <Loader />}
+      {error && (
+        <ErrorMessage error={error ? error : verifyError} path={'/register'} />
+      )}
+      {isLoading || verifyIsLoading ? <Loader /> : null}
     </>
   );
 };

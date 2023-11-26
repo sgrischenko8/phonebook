@@ -36,7 +36,7 @@ const App = () => {
             <RestrictedRoute redirectTo="/contacts" component={<Login />} />
           }
         />
-        <Route path="*" element={<Contacts />} />
+        <Route path="*" element={<Login />} />
       </Route>
     </Routes>
   );

@@ -8,20 +8,18 @@ export const contactsApi = createApi({
       const token = getState().token.token;
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
-      } else {
-        headers.set('authorization', '');
       }
       return headers;
     },
   }),
   tagTypes: ['Contact'],
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getContacts: builder.query({
       query: () => '/contacts',
       providesTags: ['Contact'],
     }),
     addContact: builder.mutation({
-      query: values => ({
+      query: (values) => ({
         url: '/contacts',
         method: 'POST',
         body: values,
@@ -29,7 +27,7 @@ export const contactsApi = createApi({
       invalidatesTags: ['Contact'],
     }),
     deleteContact: builder.mutation({
-      query: contactId => ({
+      query: (contactId) => ({
         url: `/contacts/${contactId}`,
         method: 'DELETE',
       }),

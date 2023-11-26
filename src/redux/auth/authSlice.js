@@ -6,15 +6,9 @@ export const authApi = createApi({
     baseUrl: 'https://phonebook-backend-2d7j.onrender.com',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token.token;
-      if (token === '') {
-        console.log('empty');
-        headers.set('authorization', 'Bear');
-        return;
-      } else {
-        console.log('est');
+      if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
-      console.log('see');
       return headers;
     },
   }),
@@ -22,7 +16,7 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     checkUser: builder.query({
       query: () => '/users/current',
-      providesTags: ['user'],
+      providesTags: ['Auth'],
     }),
     register: builder.mutation({
       query: (values) => ({

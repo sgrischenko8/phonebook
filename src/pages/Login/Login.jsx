@@ -8,7 +8,6 @@ import ErrorMessage from 'src/components/ErrorMessage/ErrorMessage';
 
 const Login = () => {
   let location = useLocation();
-  console.log(location, 'location');
 
   const dispatch = useDispatch();
   const [login, { isLoading, error }] = useLoginMutation();
