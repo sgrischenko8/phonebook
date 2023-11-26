@@ -15,6 +15,7 @@ const Login = () => {
   const loginHandler = async (values) => {
     try {
       await login(values).then((res) => {
+        console.log(res, 'login');
         dispatch(setToken(res?.data?.token));
       });
     } catch (error) {
