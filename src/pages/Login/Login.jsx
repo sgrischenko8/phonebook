@@ -13,6 +13,7 @@ const Login = () => {
   const [login, { isLoading, error }] = useLoginMutation();
 
   const loginHandler = async (values) => {
+    delete values.name;
     try {
       await login(values).then((res) => {
         console.log(res, 'login');

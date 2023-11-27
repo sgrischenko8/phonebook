@@ -54,7 +54,7 @@ export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
           name="password"
           pattern="['a-zA-Z\d\s\W+\.]+."
           minLength="6"
-          title="Password number may contain letters, digits, spaces and symbols"
+          title="Password may contain letters, digits, spaces and symbols"
         />
         <div className={css.form_btn_container}>
           <Button onClick={dummyClick}>

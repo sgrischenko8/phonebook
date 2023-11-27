@@ -10,6 +10,7 @@ export const UserMenu = () => {
   const dispatch = useDispatch();
 
   const { data: user, error } = useCheckUserQuery();
+
   if (error) {
     dispatch(setToken(''));
   }
@@ -21,25 +22,23 @@ export const UserMenu = () => {
       await logout().then(() => {
         dispatch(setToken(''));
       });
-    } catch (error) {
-      console.log(error);
+    } catch (e) {
+      console.log(e);
     }
   };
 
   return (
     <>
-      {user && (
-        <div className={styles.user_container}>
-          <p>{user.email}</p>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <Button onClick={logoutHandler}>
-              <OutIcon />
-            </Button>
-          )}
-        </div>
-      )}
+      <div className={styles.user_container}>
+        <p>{user?.name}</p>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <Button onClick={logoutHandler}>
+            <OutIcon />
+          </Button>
+        )}
+      </div>
     </>
   );
 };

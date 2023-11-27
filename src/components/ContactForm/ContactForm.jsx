@@ -11,27 +11,25 @@ import {
   useGetContactsQuery,
   useAddContactMutation,
   useEditContactMutation,
-  useDeleteContactMutation,
 } from 'src/redux/contacts/contactsSlice';
 
 export const ContactForm = ({ onClose, contact }) => {
-  const initialValues = { name: '', number: '' };
+  const initialValues = { name: '', phone: '' };
   contact?.name
     ? (initialValues.name = contact?.name)
     : (initialValues.name = '');
-  contact?.number
-    ? (initialValues.number = contact?.number)
-    : (initialValues.number = '');
+  contact?.phone
+    ? (initialValues.phone = contact?.phone)
+    : (initialValues.phone = '');
 
   const theme = useSelector(selectTheme);
 
   const { data: contacts } = useGetContactsQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
   const [editContact, { isLoading: editLoading }] = useEditContactMutation();
-  const [deleteContact, { isLoading: delLoading }] = useDeleteContactMutation();
 
   const checkForEmptiness = (values) => {
-    if (values.name.trim() === '' || values.number.trim() === '') {
+    if (values.name.trim() === '' || values.phone.trim() === '') {
       return true;
     }
   };
@@ -51,7 +49,8 @@ export const ContactForm = ({ onClose, contact }) => {
     }
 
     try {
-      await addContact(values);
+      const res = await addContact(values);
+      console.log(res);
     } catch (error) {
       console.log(error);
     } finally {
@@ -61,7 +60,7 @@ export const ContactForm = ({ onClose, contact }) => {
   };
 
   const editContactHandler = async (values, actions) => {
-    if (contact.name === values.name && contact.number === values.number) {
+    if (contact.name === values.name && contact.phone === values.phone) {
       actions.resetForm();
       onClose();
       return;
@@ -72,14 +71,20 @@ export const ContactForm = ({ onClose, contact }) => {
     }
 
     try {
-      await editContact(contact.id, values);
-      await deleteContact(contact.id);
-      addContactHandler(values, actions);
+      const res = await editContact({
+        data: {
+          contactId: contact._id,
+          values,
+        },
+      });
+      console.log(res);
+      if (res?.data) {
+        actions.resetForm();
+        onClose();
+        console.log(res.data);
+      }
     } catch (error) {
       console.log(error);
-    } finally {
-      // actions.resetForm();
-      // onClose();
     }
   };
 
@@ -107,10 +112,10 @@ export const ContactForm = ({ onClose, contact }) => {
             pattern="['a-zA-Z\u0400-\u04ff0-9\s\W+\.]+"
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           />
-          <label htmlFor="number">Number</label>
+          <label htmlFor="phone">Phone</label>
           <Field
             type="tel"
-            name="number"
+            name="phone"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             maxLength="19"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +. For example +38(050)-32-74-456"
@@ -118,7 +123,7 @@ export const ContactForm = ({ onClose, contact }) => {
         </div>
         <Button onClick={dummyClick}>✔</Button>
 
-        {(isLoading || editLoading || delLoading) && <Loader />}
+        {(isLoading || editLoading) && <Loader />}
       </Form>
     </Formik>
   );

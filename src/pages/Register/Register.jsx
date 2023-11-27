@@ -1,5 +1,5 @@
 // import { useDispatch } from 'react-redux';
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import {
   useRegisterMutation,
@@ -26,7 +26,7 @@ const Register = () => {
     },
   ] = useVerifyMutation();
 
-  const verifyRegister = useCallback(async () => {
+  const verifyRegister = async () => {
     try {
       await verify(verificationToken).then((res) => {
         console.log(res, 'promise verify');
@@ -39,13 +39,13 @@ const Register = () => {
     } catch (e) {
       console.log(e);
     }
-  }, [verificationToken, verify]);
+  };
 
   useEffect(() => {
     if (verificationToken) {
       verifyRegister();
     }
-  }, [verifyRegister, verificationToken]);
+  }, []);
 
   const showCongrats = () => {
     toast.success(
@@ -71,9 +71,6 @@ const Register = () => {
       <div className={styles.main_container}>
         <h1>Phonebook</h1>
         <CredentialForm registerHandler={registerHandler} />
-        <button type="button" onClick={() => verifyRegister()}>
-          send
-        </button>
       </div>
       {error && (
         <ErrorMessage error={error ? error : verifyError} path={'/register'} />

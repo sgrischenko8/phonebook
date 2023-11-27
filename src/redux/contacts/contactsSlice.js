@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const contactsApi = createApi({
   reducerPath: 'contacts',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com',
+    baseUrl: 'https://phonebook-backend-2d7j.onrender.com/api',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().token.token;
       if (token) {
@@ -34,10 +34,10 @@ export const contactsApi = createApi({
       invalidatesTags: ['Contact'],
     }),
     editContact: builder.mutation({
-      query: ({ contactId, values }) => ({
-        url: `/contacts/${contactId}`,
+      query: ({ data }) => ({
+        url: `/contacts/${data.contactId}`,
         method: 'PATCH',
-        body: values,
+        body: data.values,
       }),
       invalidatesTags: ['Contact'],
     }),

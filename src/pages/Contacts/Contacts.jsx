@@ -7,7 +7,8 @@ import { useState } from 'react';
 import styles from './Contacts.module.css';
 
 const Contacts = () => {
-  const { data: contacts } = useGetContactsQuery();
+  const { data: contacts, error } = useGetContactsQuery();
+  console.log(contacts, error, 'contacts');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -22,7 +23,7 @@ const Contacts = () => {
             <Button onClick={() => setIsModalOpen(true)}>+</Button>
           </div>
 
-          <ContactList />
+          <ContactList contacts={contacts} />
           {isModalOpen && <Modal onClose={toggleModal}></Modal>}
         </div>
       )}
