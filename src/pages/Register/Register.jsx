@@ -9,7 +9,7 @@ import { CredentialForm } from 'src/components/CredentialForm/CredentialForm';
 import Loader from 'src/components/Loader/Loader';
 import toast from 'react-hot-toast';
 import ErrorMessage from 'src/components/ErrorMessage/ErrorMessage';
-import styles from './Register.module.css';
+import css from './Register.module.css';
 
 const Register = () => {
   let navigate = useNavigate();
@@ -68,9 +68,13 @@ const Register = () => {
 
   return (
     <>
-      <div className={styles.main_container}>
+      <div className={css.main_container}>
         <h1>Phonebook</h1>
         <CredentialForm registerHandler={registerHandler} />
+        <p className={css.caution_container}>
+          Please, write real email. Verification procedure goes with the link in
+          the letter
+        </p>
       </div>
       {error && (
         <ErrorMessage error={error ? error : verifyError} path={'/register'} />

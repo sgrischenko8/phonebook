@@ -5,7 +5,8 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('IBM Plex Mono'),
+  src:
+    local('IBM Plex Mono'),
     url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
       url(./fonts/IBMPlexMono-Regular.ttf) format('truetype');
 }
@@ -15,7 +16,8 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: local('IBM Plex Mono'),
+  src:
+    local('IBM Plex Mono'),
     url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
       url(./fonts/IBMPlexMono-Bold.ttf) format('truetype');
 }
@@ -25,7 +27,8 @@
   font-style: italic;
   font-weight: 400;
   font-display: swap;
-  src: local('IBM Plex Mono'),
+  src:
+    local('IBM Plex Mono'),
     url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
       url(./fonts/IBMPlexMono-Italic.ttf) format('truetype');
 }
@@ -35,7 +38,8 @@
   font-style: italic;
   font-weight: 700;
   font-display: swap;
-  src: local('IBM Plex Mono'),
+  src:
+    local('IBM Plex Mono'),
     url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap')
       url(./fonts/IBMPlexMono-BoldItalic.ttf) format('truetype');
 }
@@ -132,14 +136,17 @@ button {
   box-shadow: 1px 1px 4px 0px rgba(130, 173, 209, 0.9);
 }
 
-button:hover {
+button:hover,
+button:focus {
   opacity: 0.8;
   box-shadow: 1px 1px 8px 2px rgba(130, 173, 209, 1);
 }
 button:active {
   scale: 0.95;
 }
-
+button:focus {
+  outline: none;
+}
 svg {
   fill: rgba(130, 173, 209, 0.9);
   stroke: inherit;

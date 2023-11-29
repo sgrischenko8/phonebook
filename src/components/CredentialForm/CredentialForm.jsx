@@ -2,6 +2,7 @@ import { Formik, Form, Field } from 'formik';
 import { Button } from 'src/components/Button/Button';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { ShowHidePassword } from '../ShowHidePassword';
 import css from './CredentialForm.module.css';
 
 export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
@@ -39,7 +40,6 @@ export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
             />
           </>
         )}
-
         <label htmlFor="email">Email:</label>
         <Field
           type="email"
@@ -47,7 +47,6 @@ export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
           pattern="^([^ ]+@[^ ]+\.[a-z]{2,6}|)$"
           title="E-mail may contain only letters, digits, At sign and dot. For example JacobMercer2@gmail.com"
         />
-
         <label htmlFor="password">Password:</label>
         <Field
           type={passwordVisibility ? 'text' : 'password'}
@@ -61,12 +60,13 @@ export const CredentialForm = ({ loginHandler, registerHandler, email }) => {
             {location.pathname === '/register' ? 'Sign Up' : 'Log In'}
           </Button>
         </div>
+
         <button
           className={css.visibility_btn}
           type="button"
           onClick={() => togglePasswordVisibility()}
         >
-          show
+          <ShowHidePassword show={passwordVisibility} />
         </button>
       </Form>
     </Formik>
